@@ -448,6 +448,8 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
 
     #endregion
 
+    #region Interfaces' Methods
+    
     public object Clone()
     {
         StudentsGroup copy = new StudentsGroup(this);
@@ -489,4 +491,6 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     {
         return GetEnumerator();
     }
+
+    #endregion
 }
