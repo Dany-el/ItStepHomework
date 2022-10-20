@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Project;
 
 #region Exceptions
@@ -18,7 +20,7 @@ public class GroupIsFull : ApplicationException
 
 #endregion
 
-public class StudentsGroup : ICloneable, IComparable
+public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
 {
     #region Fields
 
@@ -473,5 +475,18 @@ public class StudentsGroup : ICloneable, IComparable
         {
             throw new ArgumentException("Wrong parameter's type");
         }
+    }
+
+    public IEnumerator<Student> GetEnumerator()
+    {
+        for (int i = 0; i < Group.Count; i++)
+        {
+            yield return Group[i];
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 }
