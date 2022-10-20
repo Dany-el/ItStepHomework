@@ -105,7 +105,8 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
                     finalExamsGrades.Length,
                     termPapersGrades.Length,
                     creditsGrades.Length,
-                    studentGroup[i].GradeFinalExams,studentGroup[i].GradeTermPapers,studentGroup[i].GradeCredits));
+                    studentGroup[i].GradeFinalExams, studentGroup[i].GradeTermPapers,
+                    studentGroup[i].GradeCredits));
             }
             else
             {
@@ -131,7 +132,8 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
 
         String[] patronymics = new string[]
         {
-            "Arturovich", "Vladimirovich", "Valeriovich", "Danilovich", "Alexandrovich", "Grygoryevich", "Sergeyovich",
+            "Arturovich", "Vladimirovich", "Valeriovich", "Danilovich", "Alexandrovich", "Grygoryevich",
+            "Sergeyovich",
             "Pavlovich"
         };
 
@@ -145,9 +147,14 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
 
         int randomPhoneNumber = new Random().Next(1_000_000, 9_999_999);
 
-        int[] finalExam = new[] { (new Random().Next(1, 6)),(new Random().Next(1, 6)) };
-        int[] credits = new[] { (new Random().Next(1, 6)),(new Random().Next(1, 6)),(new Random().Next(1, 6)),(new Random().Next(1, 6)) };
-        int[] termPapers = new[] { (new Random().Next(1, 6)),(new Random().Next(1, 6)),(new Random().Next(1, 6)) };
+        int[] finalExam = new[] { (new Random().Next(1, 6)), (new Random().Next(1, 6)) };
+        int[] credits = new[]
+        {
+            (new Random().Next(1, 6)), (new Random().Next(1, 6)), (new Random().Next(1, 6)),
+            (new Random().Next(1, 6))
+        };
+        int[] termPapers = new[]
+            { (new Random().Next(1, 6)), (new Random().Next(1, 6)), (new Random().Next(1, 6)) };
 
         return new Student(names[randomNameIndex], surnames[randomSurnameIndex], patronymics[randomPatronymicIndex],
             "068" + randomPhoneNumber.ToString(),
@@ -449,14 +456,14 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     #endregion
 
     #region Interfaces' Methods
-    
+
     public object Clone()
     {
         StudentsGroup copy = new StudentsGroup(this);
 
         return copy;
     }
-    
+
     /// <summary>
     /// Sort group in list by amount of students 
     /// </summary>
@@ -470,7 +477,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
         if (obj is StudentsGroup)
         {
             StudentsGroup group = obj as StudentsGroup;
-            
+
             return StudentsAmount.CompareTo(group.StudentsAmount);
         }
         else
@@ -493,4 +500,17 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     }
 
     #endregion
+}
+
+public static class TestExtension2
+{
+    public static bool IsEven(this int value)
+    {
+        if (value % 2 == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
