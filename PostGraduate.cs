@@ -1,4 +1,4 @@
-namespace Project;
+namespace ItStepHomework;
 
 public class PostGraduate : Student
 {

@@ -1,25 +1,29 @@
-﻿using System;
-using Project;
+﻿using ItStepHomework;
 
 namespace Program
 {
-    /// <summary>
-    /// TODO: hw.2 ,3
-    /// </summary>
     internal static class Program
     {
         public static void Main()
         {
+            
+            
             StudentsGroup group = new StudentsGroup(4, "AC-223", "1", "ICS");
 
-            
-            
-            foreach (var item in group)
-            {
-                Console.WriteLine(item);
-                item.ShowGrades();
-            }
-            
+            Menu menu = new(ref group);
+            menu.Start();
+
+            // У меня студент/группа не статические,
+            // из-за этого пришлось сделать по статическому классу
+            // Console.WriteLine(TestExtension.IsOdd(9));
+            // Console.WriteLine(TestExtension2.IsEven(10));
+
+            // foreach (var item in group)
+            // {
+            //     Console.WriteLine(item);
+            //     item.ShowGrades();
+            // }
+
             // group.Sort();
             //
             // StudentsGroup copy = group.Clone() as StudentsGroup;

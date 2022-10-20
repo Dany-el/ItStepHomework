@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace Project;
+namespace ItStepHomework;
 
 #region Exceptions
 
@@ -123,7 +123,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     /// Create new object with random values
     /// </summary>
     /// <returns>object type 'Student'</returns>
-    private Student RandomStudentInfo()
+    public Student RandomStudentInfo()
     {
         String[] names = new String[]
             { "Artur", "Valeria", "Vladislav", "Lena", "Artem", "Daniel", "Viktoria", "Olga" };
@@ -305,6 +305,27 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
 
         dest.AddStudent(student);
         RemoveStudentByIndex(FindStudentIndex(student));
+    }
+
+    public void RemoveStudent(Student student)
+    {
+        if (student == null)
+        {
+            throw new Exception("The argument is null");
+        }
+
+        RemoveStudentByIndex(FindStudentIndex(student));
+    }
+    
+    public void RemoveStudent(int index)
+    {
+        index--;
+        if (index < 0 || index >= Group.Count)
+        {
+            throw new Exception("Out of range");
+        }
+
+        Group.RemoveAt(index);
     }
 
     /// <summary>

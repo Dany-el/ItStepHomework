@@ -1,4 +1,4 @@
-namespace Project;
+namespace ItStepHomework;
 
 /// <summary>
 /// My Date contains day, month, year (without any checking of right entering)
@@ -59,7 +59,7 @@ public class Person
     {
         if (day is > 0 and <= 31 && month is > 0 and <= 12)
         {
-            Birthday = new(year, month, day);
+            Birthday = new(day, month, year);
         }
         else
         {
