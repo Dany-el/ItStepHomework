@@ -1,5 +1,22 @@
 namespace Project;
 
+/// <summary>
+/// My Date contains day, month, year (without any checking of right entering)
+/// </summary>
+public struct MyDate
+{
+    public int Day { get; private set; }
+    public int Month { get; private set; }
+    public int Year { get; private set; }
+
+    public MyDate(int day = 10, int month = 10, int year = 1991)
+    {
+        Day = day;
+        Month = month;
+        Year = year;
+    }
+}
+
 public class Person
 {
     public string Name { get; set; }
@@ -8,7 +25,7 @@ public class Person
 
     public string Patronymic { get; set; }
 
-    public DateTime Birthday { get; set; }
+    public MyDate Birthday { get; set; }
 
     public int Age
     {
@@ -26,7 +43,7 @@ public class Person
         Name = name;
         Surname = surname;
         Patronymic = patronymic;
-        Birthday = new DateTime(year,month,day);
+        Birthday = new MyDate(day,month,year);
     }
 
     public override string ToString()
