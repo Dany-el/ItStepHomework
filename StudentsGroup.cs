@@ -34,8 +34,16 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
 
     #region Constructors
 
-    public StudentsGroup(int studentsAmount = 8, String groupName = "AC-227", String courseNumber = "1",
-        String groupSpecialization = "ICS")
+    /// <summary>
+    /// Constructor with|out params
+    /// </summary>
+    /// <param name="studentsAmount">amount of students in group (default 8)</param>
+    /// <param name="groupName">group name</param>
+    /// <param name="courseNumber">current course number</param>
+    /// <param name="groupSpecialization">specialization of group</param>
+    /// <exception cref="Exception">Argument is null</exception>
+    public StudentsGroup(int studentsAmount = 8, String groupName = "Undefined", String courseNumber = "Undefined",
+        String groupSpecialization = "Undefined")
     {
         if (studentsAmount < 0)
         {
@@ -80,6 +88,12 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
         }
     }*/
 
+    /// <summary>
+    /// Copy-constructor
+    /// which copy data from another group
+    /// </summary>
+    /// <param name="studentGroup">group to copy</param>
+    /// <exception cref="Exception">arrays with grades are null</exception>
     public StudentsGroup(StudentsGroup studentGroup)
     {
         GroupName = studentGroup.GroupName;
@@ -120,7 +134,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     #region Methods
 
     /// <summary>
-    /// Create new object with random values
+    /// Creates new object with random values
     /// </summary>
     /// <returns>object type 'Student'</returns>
     public Student RandomStudentInfo()
@@ -163,7 +177,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     }
 
     /// <summary>
-    /// Show group
+    /// Shows group
     /// </summary>
     public void Show()
     {
@@ -184,7 +198,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     }
 
     /// <summary>
-    /// Add student
+    /// Adds student to group
     /// </summary>
     /// <param name="student">student to add</param>
     public void AddStudent(Student student)
@@ -275,9 +289,9 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     /// Change student's birthday
     /// </summary>
     /// <param name="index">from 1</param>
-    /// <param name="day"></param>
-    /// <param name="month"></param>
-    /// <param name="year"></param>
+    /// <param name="day">day of birth</param>
+    /// <param name="month">month of birth</param>
+    /// <param name="year">year of birth</param>
     public void EditStudentInfo(int index, int day, int month, int year)
     {
         index--;
@@ -294,8 +308,8 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     /// <summary>
     /// Move student to another group
     /// </summary>
-    /// <param name="student">who will be transferred</param>
-    /// <param name="dest">where student will be transferred</param>
+    /// <param name="student">source</param>
+    /// <param name="dest">destination</param>
     public void MoveStudentToGroup(Student student, ref StudentsGroup dest)
     {
         if (student == null || dest == null)
@@ -304,9 +318,14 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
         }
 
         dest.AddStudent(student);
-        RemoveStudentByIndex(FindStudentIndex(student));
+        RemoveStudent(FindStudentIndex(student));
     }
 
+    /// <summary>
+    /// Remove student from group by 
+    /// </summary>
+    /// <param name="student">student to remove</param>
+    /// <exception cref="Exception">object is null</exception>
     public void RemoveStudent(Student student)
     {
         if (student == null)
@@ -314,9 +333,14 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
             throw new Exception("The argument is null");
         }
 
-        RemoveStudentByIndex(FindStudentIndex(student));
+        RemoveStudent(FindStudentIndex(student));
     }
     
+    /// <summary>
+    /// Remove student from group by index
+    /// </summary>
+    /// <param name="index">student's index</param>
+    /// <exception cref="Exception">index is out of range</exception>
     public void RemoveStudent(int index)
     {
         index--;
@@ -328,11 +352,10 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
         Group.RemoveAt(index);
     }
 
-    /// <summary>
-    /// Find student's index in array
-    /// </summary>
-    /// <param name="student">student to find</param>
-    /// <returns></returns>
+    /**
+     * Find student's index in array
+     * Returns -1 if student does not exist in the list
+     */
     private int FindStudentIndex(Student student)
     {
         int studentIndex = Group.IndexOf(student);
@@ -346,7 +369,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     }
 
     /// <summary>
-    /// Remove student by index
+    /// Removes student by index
     /// </summary>
     /// <param name="studentIndex">student's index</param>
     private void RemoveStudentByIndex(int studentIndex)
@@ -360,7 +383,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     }
 
     /// <summary>
-    /// Remove students if grade is lower than 60
+    /// Removes students if grade is lower than 60
     /// Working only 1 time
     /// It will be fixed after adding kinda 'container'
     /// </summary>
@@ -374,13 +397,13 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
 
         Console.WriteLine(Group[studentIndex].Name + " " + Group[studentIndex].Surname +
                           " was removed from group by low grades");
-        RemoveStudentByIndex(studentIndex);
+        RemoveStudent(studentIndex);
     }
 
-    /// <summary>
-    /// Find student with low grades
-    /// </summary>
-    /// <returns>index or -1 if there are not grades lower than 60</returns>
+    /**
+     * Finds student with low grades.
+     * Returns index or -1 if there are not grades lower than 60
+     */
     private int FindIndexOfStudentWithMinGrades()
     {
         for (int i = 0; i < StudentsAmount; i++)
@@ -418,7 +441,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     }
 
     /// <summary>
-    /// Test expections
+    /// Tests exceptions
     /// </summary>
     /// <param name="value">1 - group is full | 2 - group is empty-</param>
     /// <exception cref="GroupIsFull"></exception>
