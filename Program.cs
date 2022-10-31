@@ -7,11 +7,13 @@ namespace Program
         public static void Main()
         {
             
-            
             StudentsGroup group = new StudentsGroup(4, "AC-223", "1", "ICS");
 
-            Menu menu = new(ref group);
-            menu.Start();
+            Student st = new Student();
+            Student st1 = (Student)st.Clone();
+
+            // Menu menu = new(ref group);
+            // menu.Start();
 
             // У меня студент/группа не статические,
             // из-за этого пришлось сделать по статическому классу
