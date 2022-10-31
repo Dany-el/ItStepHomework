@@ -42,6 +42,10 @@ public class Student : Person, ICloneable, IComparable
 
     private int[] gradeFinalExams;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <exception cref="Exception"></exception>
     public int[]? GradeFinalExams
     {
         get => gradeFinalExams;
@@ -64,6 +68,10 @@ public class Student : Person, ICloneable, IComparable
 
     private int[] gradeTermPapers;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <exception cref="Exception"></exception>
     public int[]? GradeTermPapers
     {
         get => gradeTermPapers;
@@ -86,6 +94,10 @@ public class Student : Person, ICloneable, IComparable
 
     private int[] gradeCredits;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <exception cref="Exception"></exception>
     public int[]? GradeCredits
     {
         get => gradeCredits;
@@ -110,6 +122,23 @@ public class Student : Person, ICloneable, IComparable
 
     #region Constructors
 
+    /// <summary>
+    /// Constructor with|out params
+    /// </summary>
+    /// <param name="name">firstname</param>
+    /// <param name="surname">lastname</param>
+    /// <param name="patronymic">patronymic</param>
+    /// <param name="phoneNumber">phone number</param>
+    /// <param name="homeAddress">home address</param>
+    /// <param name="year">year of birth</param>
+    /// <param name="month">month of birth</param>
+    /// <param name="day">day of birth</param>
+    /// <param name="finalExamsAmount">amount of final exams</param>
+    /// <param name="termPapersAmount">amount of term papers</param>
+    /// <param name="creditsAmount">amount of credits</param>
+    /// <param name="finalExamGrades">final exams grades</param>
+    /// <param name="termPapersGrades">term papers grades</param>
+    /// <param name="creditsGrades">credits grades</param>
     public Student(
         string name = "Undefined",
         string surname = "Undefined",
@@ -169,6 +198,10 @@ public class Student : Person, ICloneable, IComparable
 
     #region Methods
 
+    /// <summary>
+    /// Transform student's data to string 
+    /// </summary>
+    /// <returns>string with student's data</returns>
     public override string ToString()
     {
         string info = base.ToString() +
@@ -202,6 +235,16 @@ public class Student : Person, ICloneable, IComparable
         return 0;
     }
 
+    /// <summary>
+    /// Compares two objects type 'Student' by avg credit
+    /// </summary>
+    /// <param name="obj">object to compare</param>
+    /// <returns>
+    /// zero             - This instance is equal to value
+    /// negative integer - This instance is less than value
+    /// positive integer - This instance is greater than value
+    /// </returns>
+    /// <exception cref="ArgumentException">Received obj type is not type Student</exception>
     public int CompareTo(object? obj)
     {
         if (obj is Student)
@@ -220,6 +263,10 @@ public class Student : Person, ICloneable, IComparable
         }
     }
 
+    /// <summary>
+    /// Clone object and returns it
+    /// </summary>
+    /// <returns>Copy of itself</returns>
     public object Clone()
     {
         Student copy = new Student(Name, Surname, Patronymic,
@@ -230,6 +277,9 @@ public class Student : Person, ICloneable, IComparable
         return copy;
     }
 
+    /// <summary>
+    /// Show all student's grades
+    /// </summary>
     public void ShowGrades()
     {
         Console.WriteLine("====Grades====");
@@ -277,7 +327,10 @@ public class Student : Person, ICloneable, IComparable
                 throw new StudentHasNoInternetException("Student has no internet");
         }
     }
-
+    
+    /**
+     * Count average credit of student and returns it
+     */
     private double AvgCredit()
     {
         double avg = 0;
