@@ -210,17 +210,11 @@ public class Student : Person, ICloneable, IComparable
         return info;
     }
 
-
-    /// <summary>
-    /// Takes value from CompareTo() method and reverse its value
-    /// The cause - in the end the first will be min value and the last max value
-    /// </summary>
-    /// <param name="value"> Integer from CompareTo()</param>
-    /// <returns> 
-    /// zero             - This instance is equal to value
-    /// negative integer - This instance is less than value
-    /// positive integer - This instance is greater than value
-    /// </returns>
+    /**
+     * Takes value from CompareTo() method and reverse its value
+     * The cause - in the end the first will be min value and the last max value
+     * Get Integer type value from CompareTo()
+     */
     private int ReversedCompareTo(int value)
     {
         if (value < 0)
@@ -327,7 +321,7 @@ public class Student : Person, ICloneable, IComparable
                 throw new StudentHasNoInternetException("Student has no internet");
         }
     }
-    
+
     /**
      * Count average credit of student and returns it
      */
@@ -344,12 +338,13 @@ public class Student : Person, ICloneable, IComparable
     }
 
     #endregion
-    
-    
+
+
     // Из-за строчки №319 выбивало исключение за нулл.
     // Как и каким образом оно выскакивало, если не использовалось - не понятно  
+
     #region Operators
-    
+
     /*public static bool operator >(Student first, Student second)
     {
         double avgFirst = first.AvgCredit();
