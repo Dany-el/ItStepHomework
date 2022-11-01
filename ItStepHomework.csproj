@@ -7,4 +7,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin/ItStepHomework.xml</DocumentationFile>
+    </PropertyGroup>
+
 </Project>
