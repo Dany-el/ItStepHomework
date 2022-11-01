@@ -9,14 +9,20 @@ namespace Program
             
             StudentsGroup group = new StudentsGroup(4, "AC-223", "1", "ICS");
 
-            Student st = new Student();
-            Student st1 = (Student)st.Clone();
+            Student student = group.RandomStudentInfo();
+            
+            StateSaver saver = new StateSaver();
+            saver.Save(group,"groups/AC-223.dat");
+            //saver.ReadGroup("groups/AC-223.dat");
+
+            saver.Save(student,"students/student1.dat");
+            //saver.ReadStudent("students/student1.dat");
+
+            #region testing
 
             // Menu menu = new(ref group);
             // menu.Start();
 
-            // У меня студент/группа не статические,
-            // из-за этого пришлось сделать по статическому классу
             // Console.WriteLine(TestExtension.IsOdd(9));
             // Console.WriteLine(TestExtension2.IsEven(10));
 
@@ -120,6 +126,9 @@ namespace Program
                     Console.WriteLine(e.Message);
                 }
             }*/
+
+            #endregion
+            
         }
     }
 }
