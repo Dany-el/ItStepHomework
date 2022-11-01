@@ -32,6 +32,7 @@ public class StudentIsIllException : ApplicationException
 
 #endregion
 
+[Serializable]
 public class Student : Person, ICloneable, IComparable
 {
     #region Fields

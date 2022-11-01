@@ -20,6 +20,7 @@ public class GroupIsFull : ApplicationException
 
 #endregion
 
+[Serializable]
 public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
 {
     #region Fields
@@ -461,15 +462,15 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
 
     #region Operators
 
-    public static bool operator ==(StudentsGroup first, StudentsGroup second)
-    {
-        return first.StudentsAmount == second.StudentsAmount;
-    }
-
-    public static bool operator !=(StudentsGroup first, StudentsGroup second)
-    {
-        return first.StudentsAmount != second.StudentsAmount;
-    }
+    // public static bool operator ==(StudentsGroup first, StudentsGroup second)
+    // {
+    //     return first.StudentsAmount == second.StudentsAmount;
+    // }
+    //
+    // public static bool operator !=(StudentsGroup first, StudentsGroup second)
+    // {
+    //     return first.StudentsAmount != second.StudentsAmount;
+    // }
 
     #endregion
 

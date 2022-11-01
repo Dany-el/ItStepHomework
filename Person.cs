@@ -3,6 +3,7 @@ namespace ItStepHomework;
 /// <summary>
 /// My Date contains day, month, year (without any checking of right entering)
 /// </summary>
+[Serializable]
 public struct MyDate
 {
     public int Day { get; private set; }
@@ -17,6 +18,7 @@ public struct MyDate
     }
 }
 
+[Serializable]
 public class Person
 {
     public string Name { get; set; }
