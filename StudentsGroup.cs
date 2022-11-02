@@ -28,8 +28,11 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     public List<Student> Group { get; set; }
     public int StudentsAmount { get; private set; }
     public String GroupName { get; set; }
-    public String CourseNumber { get; set; }
+    public int CourseNumber { get; set; }
     public String GroupSpecialization { get; set; }
+
+    public delegate void GroupHandler(string msg);
+    public event GroupHandler UpdateCourse;
 
     #endregion
 
@@ -43,7 +46,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
     /// <param name="courseNumber">current course number</param>
     /// <param name="groupSpecialization">specialization of group</param>
     /// <exception cref="Exception">Argument is null</exception>
-    public StudentsGroup(int studentsAmount = 8, String groupName = "Undefined", String courseNumber = "Undefined",
+    public StudentsGroup(int studentsAmount = 8, String groupName = "Undefined", int courseNumber = 0,
         String groupSpecialization = "Undefined")
     {
         if (studentsAmount < 0)
@@ -245,7 +248,7 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
                 break;
             case 3:
                 Console.WriteLine("Course number was changed");
-                CourseNumber = info;
+                CourseNumber = int.Parse(info);
                 break;
         }
     }
@@ -455,6 +458,18 @@ public class StudentsGroup : ICloneable, IComparable, IEnumerable<Student>
                 throw new GroupIsFull("Group is full");
             case 2:
                 throw new GroupIsEmpty("Group is empty");
+        }
+    }
+    
+    /// <summary>
+    /// Updates group course
+    /// </summary>
+    public void CourseUpdate()
+    {
+        if (UpdateCourse != null)
+        {
+            CourseNumber++;
+            UpdateCourse($"Current course {CourseNumber}");
         }
     }
 

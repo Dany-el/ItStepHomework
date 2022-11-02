@@ -119,6 +119,13 @@ public class Student : Person, ICloneable, IComparable
         }
     }
 
+    private int gradeSetCounter = 0;
+
+    public delegate void StudentHandler(string msg);
+
+    public event StudentHandler AutoGrade;
+    public event StudentHandler OversleepLesson;
+
     #endregion
 
     #region Constructors
@@ -336,6 +343,34 @@ public class Student : Person, ICloneable, IComparable
         }
 
         return avg / gradeCredits.Length;
+    }
+
+    public void AddCreditRate(int credit)
+    {
+        if (credit > 0 && credit <= 100 && AutoGrade != null)
+        {
+            gradeSetCounter++;
+            if (gradeSetCounter >= 10)
+            {
+                AutoGrade("Your final grade is 98!");
+            }
+            else
+            {
+                AutoGrade("Grade was added");
+            }
+        }
+        else
+        {
+            throw new Exception("Number is more than 100 or less than 0");
+        }
+    }
+
+    public void Oversleep()
+    {
+        if (OversleepLesson != null)
+        {
+            OversleepLesson("Student overslept the lesson");
+        }
     }
 
     #endregion
