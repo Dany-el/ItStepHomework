@@ -4,19 +4,42 @@ namespace Program
 {
     internal static class Program
     {
+        static void DisplayMessage(string message) => Console.WriteLine(message);
         public static void Main()
         {
             
-            StudentsGroup group = new StudentsGroup(4, "AC-223", "1", "ICS");
+            StudentsGroup group = new StudentsGroup(4, "AC-223", 1, "ICS");
 
-            Student student = group.RandomStudentInfo();
+            group.UpdateCourse += DisplayMessage;
+            group.CourseUpdate();
             
-            StateSaver saver = new StateSaver();
+            Student student = group.RandomStudentInfo();
+            student.AutoGrade += DisplayMessage;
+            student.AddCreditRate(90);
+            student.AddCreditRate(90);
+            student.AddCreditRate(90);
+            student.AddCreditRate(90);
+            student.AddCreditRate(90);
+            student.AddCreditRate(90);
+            student.AddCreditRate(90);
+            student.AddCreditRate(90);
+            student.AddCreditRate(90);
+            student.AddCreditRate(90);
+
+            student.OversleepLesson += DisplayMessage;
+            student.Oversleep();
+            student.Oversleep();
+            student.Oversleep();
+            student.Oversleep();
+            student.Oversleep();
+            student.Oversleep();
+
+            /*StateSaver saver = new StateSaver();
             saver.Save(group,"groups/AC-223.dat");
             //saver.ReadGroup("groups/AC-223.dat");
-
+            
             saver.Save(student,"students/student1.dat");
-            //saver.ReadStudent("students/student1.dat");
+            //saver.ReadStudent("students/student1.dat");*/
 
             #region testing
 
@@ -128,7 +151,7 @@ namespace Program
             }*/
 
             #endregion
-            
+
         }
     }
 }
